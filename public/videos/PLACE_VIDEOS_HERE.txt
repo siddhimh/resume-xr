@@ -1,0 +1,20 @@
+Drop project preview videos here, then point each entry in
+src/data/projects.js → video to its filename.
+
+Recommended:
+  - Format: H.264 MP4
+  - Size:   1280×720 or 1920×1080
+  - Length: 10–25 sec, looping
+  - Audio:  none (cards autoplay muted)
+  - Encode: ffmpeg -i in.mov -an -c:v libx264 -crf 22 -pix_fmt yuv420p -movflags +faststart out.mp4
+
+Expected filenames (matching the placeholder data):
+  spatial-canvas.mp4
+  orbit.mp4
+  anywhere-museum.mp4
+  ar-onboarding.mp4
+  hand-input-lab.mp4
+  mr-storyboard.mp4
+
+If a video is missing, the card automatically falls back to a coloured
+poster with the project title — so nothing breaks while you're adding clips.
