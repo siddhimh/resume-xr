@@ -18,7 +18,7 @@ export const PROJECTS = [
       'SharePlay multi-user co-drawing sessions'
     ],
     accent: ['#ff6b4a', '#ffb199'],
-    video: '/videos/spatial-canvas.mp4',
+    video: './public/videos/Warli-World-Demo.mp4',
     links: [{ label: 'Case study', href: '#' }, { label: 'Demo reel', href: '#' }]
   },
   {
