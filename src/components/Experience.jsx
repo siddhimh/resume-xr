@@ -1,21 +1,31 @@
 const ITEMS = [
   {
-    when: '2024 — Present',
-    role: 'XR & Spatial Computing Developer',
-    where: 'Freelance · Selected studios',
-    blurb: 'Designing and shipping spatial experiences for Apple Vision Pro, Meta Quest, and WebXR. Working with clients across entertainment, training, and product.'
+    when: 'Jan 2026 — Present',
+    role: 'Lead Developer · AI Workflow Dashboarding Platform',
+    where: 'New York University, Department of Faculty Affairs · Brooklyn, NY',
+    bullets: [
+      'Designed and built a React-based faculty support portal with workflow dashboards for tracking requests, policy resources, approval status, and administrative actions, translating complex policy workflows into a usable interface that reduced manual queries by 88%.',
+      'Built a policy-grounded LLM chatbot using structured retrieval pipelines over institutional documents, improving response accuracy by 92% and reducing query resolution time from hours to 4–5 minutes while supporting human-in-the-loop review.'
+    ]
   },
   {
-    when: '2023 — 2024',
-    role: 'Unity / AR Developer',
-    where: 'Independent studio',
-    blurb: 'Built mobile AR tools and prototype headset apps. Owned the interaction layer and rendering tuning across multiple shipped titles.'
+    when: 'Sep 2023 — Jun 2025',
+    role: 'Software Development Engineer',
+    where: 'Jio Platforms Limited (JPL) · Mumbai, India',
+    bullets: [
+      'Developed internal HR and enterprise workflow products across onboarding, offboarding, approvals, surveys, and employee lifecycle processes, translating manual operational workflows into structured digital systems.',
+      'Built a Node.js and MongoDB workflow and survey engine with scheduled task flows, structured data capture, real-time reporting, and reusable backend services, replacing legacy SharePoint processes and reducing turnaround time by 85%.',
+      'Implemented supporting platform services including OCR/LLM-based document parsing, queue-based SMS/email notifications, SAML 2.0 authentication with Passport.js, logging, monitoring, and alerting to improve reliability and traceability across production workflows.'
+    ]
   },
   {
-    when: '2022 — 2023',
-    role: 'Software Developer · 3D Web',
-    where: 'Early-stage startup',
-    blurb: 'Built interactive 3D experiences in the browser using Three.js and React. Helped move a 2D product into a spatially-aware UI.'
+    when: 'Mar 2023 — Sep 2023',
+    role: 'Backend Developer Intern',
+    where: 'Jio Platforms Limited (JPL) · Mumbai, India',
+    bullets: [
+      'Optimized high-volume file upload workflows by improving request handling and backend processing, reducing average latency by 70–80% and supporting faster batch uploads.',
+      'Integrated SAP HANA APIs into a shared microservices architecture and refactored authentication logic, improving reuse across 5 core services and strengthening backend reliability.'
+    ]
   }
 ]
 
@@ -31,7 +41,9 @@ export default function Experience() {
               <div className="when">{i.when}</div>
               <h3>{i.role}</h3>
               <div className="where">{i.where}</div>
-              <p>{i.blurb}</p>
+              <ul className="timeline-bullets">
+                {i.bullets.map((b, idx) => <li key={idx}>{b}</li>)}
+              </ul>
             </div>
           ))}
         </div>

@@ -12,27 +12,29 @@ export default function Navbar() {
   const [active, setActive] = useState('about')
 
   useEffect(() => {
-    const targets = SECTIONS
-      .map((s) => document.getElementById(s.id))
-      .filter(Boolean)
-
-    if (targets.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible[0]) setActive(visible[0].target.id)
-      },
-      {
-        rootMargin: '-40% 0px -50% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1]
+    const handleScroll = () => {
+      const probe = window.scrollY + 140
+      let current = SECTIONS[0].id
+      for (const s of SECTIONS) {
+        const el = document.getElementById(s.id)
+        if (el && el.offsetTop <= probe) {
+          current = s.id
+        }
       }
-    )
+      const doc = document.documentElement
+      const atBottom =
+        window.innerHeight + window.scrollY >= doc.scrollHeight - 4
+      if (atBottom) current = SECTIONS[SECTIONS.length - 1].id
+      setActive(current)
+    }
 
-    targets.forEach((t) => observer.observe(t))
-    return () => observer.disconnect()
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   return (

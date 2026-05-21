@@ -1,62 +1,65 @@
-import { useRef, useState } from 'react'
-
-export default function ProjectCard({ project, onOpen }) {
-  const videoRef = useRef(null)
-  const [hasVideo, setHasVideo] = useState(true)
-
-  const handleEnter = () => {
-    const v = videoRef.current
-    if (!v) return
-    v.currentTime = 0
-    v.play().catch(() => { /* autoplay blocked is fine */ })
-  }
-  const handleLeave = () => {
-    const v = videoRef.current
-    if (!v) return
-    v.pause()
-  }
-
-  const gradient = `linear-gradient(135deg, ${project.accent[0]}, ${project.accent[1]})`
+export default function ProjectCard({ project }) {
+  const accentGradient = `linear-gradient(135deg, ${project.accent[0]}, ${project.accent[1]})`
 
   return (
-    <button
-      className="project-card"
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      onFocus={handleEnter}
-      onBlur={handleLeave}
-      onClick={() => onOpen(project)}
-      aria-label={`Open project ${project.title}`}
-    >
-      <div className="project-media" style={{ background: gradient }}>
-        {hasVideo && project.video ? (
-          <video
-            ref={videoRef}
-            src={project.video}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            onError={() => setHasVideo(false)}
-          />
-        ) : (
-          <div className="poster">{project.title}</div>
-        )}
-        <span className="play" aria-hidden="true">▶</span>
-      </div>
+    <article className="project-card">
+      <span
+        className="project-accent"
+        aria-hidden="true"
+        style={{ background: accentGradient }}
+      />
+
       <div className="project-body">
-        <div className="row">
-          <h3>{project.title}</h3>
-          <span className="year">{project.year}</span>
-        </div>
-        <p className="project-tagline">{project.tagline}</p>
-        <p className="project-desc">{project.description}</p>
-        <div className="meta">
+        <header className="project-head">
+          <div>
+            <h3>{project.title}</h3>
+            <p className="project-tagline">{project.tagline}</p>
+          </div>
+          <span className="project-year">{project.year}</span>
+        </header>
+
+        <div className="project-meta">
           <span className="pill">{project.platform}</span>
-          <span>{project.role}</span>
-          <span>{project.duration}</span>
+          <span className={`pill pill-${project.type === 'Team project' ? 'team' : 'solo'}`}>
+            {project.type}
+          </span>
+          {project.demo && (
+            <a
+              className="pill pill-demo"
+              href={project.demo}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Watch demo <span aria-hidden="true"></span>
+            </a>
+          )}
         </div>
+
+        <p className="project-desc">{project.description}</p>
+
+        <ul className="project-highlights">
+          {project.highlights.map((h, i) => <li key={i}>{h}</li>)}
+        </ul>
+
+        <div className="project-stack">
+          {project.stack.map((t) => <span className="tag" key={t}>{t}</span>)}
+        </div>
+
+        {project.links?.length > 0 && (
+          <div className="project-links">
+            {project.links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target={l.href?.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+              >
+                {l.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-    </button>
+    </article>
   )
 }
