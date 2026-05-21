@@ -1,4 +1,5 @@
 export const PROJECTS = [
+  
   {
     id: 'hands-of-heritage',
     title: 'Hands of Heritage',
