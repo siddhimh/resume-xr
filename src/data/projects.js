@@ -1,23 +1,29 @@
+import { HANDS_OF_HERITAGE_CASE_STUDY } from './caseStudies/hands-of-heritage.js'
+import { URBAN_DIGITAL_TWIN_CASE_STUDY } from './caseStudies/urban-digital-twin.js'
+
 export const PROJECTS = [
   
   {
     id: 'hands-of-heritage',
     title: 'Hands of Heritage',
-    tagline: 'Immersive cultural XR experience',
+    tagline: 'Immersive VR learning system for Warli art and cultural storytelling',
     year: '2026',
     type: 'Team project',
-    platform: 'Meta Quest',
+    platform: 'Meta Quest 3',
     demo: 'https://drive.google.com/file/d/1FdmWYslcEZZcKnix1qM6nal7YwTN4Lz9/view?usp=drive_link',
-    stack: ['Unity', 'C#', 'Groq', 'Whisper', 'Google Cloud TTS', 'Blender', 'Mixamo'],
+    stack: [
+      'Unity', 'C#', 'Meta Quest 3', 'XR Interaction Toolkit',
+      'Groq Whisper', 'Groq LLaMA', 'Google Cloud TTS', 'Blender', 'Mixamo'
+    ],
     description:
-     'Hands of Heritage is an immersive XR experience that turns Warli, a traditional Indian folk art, into something you learn by doing. Instead of watching tutorials or reading about technique, you walk into a virtual village, listen to NPCs share the cultural context behind each motif, and paint directly onto mud walls with a bamboo brush. The interactions are gestural and conversational: you trace shapes with your hand, speak to NPCs to ask for guidance, and complete ritual steps in the order they were traditionally performed. The project explores how XR can teach a craft the way it has historically been passed down: through observation, ritual, and practice, not instruction.  ',
+      'Hands of Heritage is an immersive Meta Quest 3 experience that teaches Warli art through a culturally situated VR village, elder-led storytelling, voice interaction, and embodied drawing practice. Users move from observation to apprenticeship: exploring a Warli village, learning visual grammar through NPC-guided cultural priming, and creating a personalized final artwork.',
     highlights: [
-      'Immersive XR learning experience teaching Warli through first-person village exploration, NPC-guided cultural storytelling, ritual-based interaction, and hands-on painting on virtual mud walls.',
-      'Scaffolded-to-freehand learning flows including shape tracing, motif assembly, ghost-outline guidance, bamboo-brush painting, and personalized drawing prompts generated through conversational AI dialogue.',
-      'Mixed-methods user study with 12 participants - analyzing task duration, brush-stroke activity, canvas coverage, survey responses, and qualitative feedback on learning order, usability, comfort, and creative transfer.'
+      'Designed a culturally situated VR village with elder-led storytelling, world-space UI, environmental reference art, and embodied drawing practice on virtual mud walls.',
+      'Built an AI voice pipeline using Groq Whisper, Groq LLaMA, and Google Cloud TTS for conversational NPC dialogue and personalized Warli drawing prompts from user responses.',
+      'Evaluated through a counterbalanced user study with 12 participants, comparing scaffold-first and freehand-first learning orders across duration, brush strokes, canvas coverage, and qualitative feedback.'
     ],
     accent: ['#b8743a', '#e8c697'],
-   
+    caseStudy: HANDS_OF_HERITAGE_CASE_STUDY
   },
   {
     id: 'pit-crew-vr',
@@ -59,21 +65,45 @@ export const PROJECTS = [
   },
   {
     id: 'urban-digital-twin',
-    title: 'Urban Digital Twin Dashboard',
-    tagline: 'Interactive 3D city visualization',
-    year: '2025',
+    title: 'Levitating City Twin',
+    tagline: 'WebXR/AR urban morphology explorer for NYC',
+    year: '2026',
     type: 'Solo project',
-    platform: 'Web Browser',
+    platform: 'Web Browser · Meta Quest AR',
+    // Add a walkthrough clip later — local file in public/projects/urban-digital-twin/
+    // (e.g. demo: '/projects/urban-digital-twin/demo.mp4') or a Google Drive link.
     demo: '',
-    stack: ['React', 'Three.js', 'Mapbox GL JS', 'GeoJSON', 'JavaScript'],
+    stack: ['React 18', 'React Three Fiber', 'Three.js', '@react-three/xr', 'D3', 'WebXR'],
     description:
-     'Urban Digital Twin Dashboard is an interactive 3D urban visualization built to make city-scale data legible at a glance. The city itself is rendered as 3D context, with building geometry, street layouts, and surrounding terrain, so that data layers attach to real spatial reference points instead of floating over a flat map. That spatial grounding keeps everything in a single continuous frame: you can zoom from a neighborhood overview down to building-level detail without losing where you are. The visual language borrows from operations-center and digital-twin interfaces, dark-themed and depth-cued, designed for dense data without visual fatigue.',
+     'Levitating City Twin is a browser-based, WebXR-capable 3D digital twin of Manhattan that extrudes thousands of real NYC buildings from their actual footprint polygons onto a floating tabletop you can orbit on desktop or place on a real surface in AR. Its signature idea is a continuous scale transition: survey the borough on a levitating plinth, brush a cluster of buildings, then step inside that block at 1.7 m eye height to walk real streets and inspect towers — all without ever leaving the single WebGL canvas or AR session.',
     highlights: [
-      'Interactive 3D urban visualization dashboard for exploring city-scale data through spatial navigation, layered geospatial views, and building-level interactions.',
-      'Mapbox GL JS integrated with Three.js to render 3D city context, custom visual layers, camera movement, and spatial data overlays.',
-      'Digital twin-style interface with dark-theme visual styling, depth cues, and interactive filtering to make complex urban datasets easier to interpret.'
+      'Seamless tabletop-to-human-scale transition inside one WebGL canvas and one XR session, driven by dual projections (fixed-worldSize plinth vs. true 1:1 meter human scale).',
+      'Streams real building geometry from the NYC Footprints API: every building renders instantly as an instanced box, then individually upgrades to a merged extruded footprint as its polygon resolves.',
+      'Full in-headset WebGL control panel, controller/hand gestures (resize, rotate, grab-move, pinch), hit-test surface placement, cluster analysis, Height Probe, and "what-if" scenario massing.'
     ],
     accent: ['#b8743a', '#e8c697'],
-   
+    caseStudy: URBAN_DIGITAL_TWIN_CASE_STUDY
   }
 ]
+
+export function getProjectById(id) {
+  return PROJECTS.find((p) => p.id === id)
+}
+
+export function getVideoEmbed(url) {
+  if (!url) return null
+
+  if (url.startsWith('/') || /\.(mp4|webm|ogg)(\?|$)/i.test(url)) {
+    return { type: 'video', src: url }
+  }
+
+  const driveMatch = url.match(/\/file\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/)
+  if (url.includes('drive.google.com') && driveMatch) {
+    return {
+      type: 'iframe',
+      src: `https://drive.google.com/file/d/${driveMatch[1]}/preview`
+    }
+  }
+
+  return { type: 'link', src: url }
+}
