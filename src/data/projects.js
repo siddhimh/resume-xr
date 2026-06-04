@@ -10,6 +10,8 @@ export const PROJECTS = [
     year: '2026',
     type: 'Team project',
     platform: 'Meta Quest 3',
+    core: ['Virtual Reality', 'Cultural HCI', 'AI Voice Pipeline'],
+    category: 'Immersive VR Experiences',
     demo: 'https://drive.google.com/file/d/1FdmWYslcEZZcKnix1qM6nal7YwTN4Lz9/view?usp=drive_link',
     stack: [
       'Unity', 'C#', 'Meta Quest 3', 'XR Interaction Toolkit',
@@ -32,6 +34,8 @@ export const PROJECTS = [
     year: '2026',
     type: 'Solo project',
     platform: 'Meta Quest',
+    core: ['Multiplayer VR', 'Real-Time Networking', 'Interaction Design'],
+    category: 'Immersive VR Experiences',
     demo: '',
     stack: ['Unity', 'C#', 'XR Interaction Toolkit', 'Photon PUN 2', 'Mixamo'],
     description:
@@ -51,6 +55,8 @@ export const PROJECTS = [
     year: '2026',
     type: 'Solo project',
     platform: 'WebXR · ARCore',
+    core: ['Augmented Reality', 'Geospatial Viz', 'Data Engineering'],
+    category: 'Spatial Computing & Urban Visualization',
     demo: '',
     stack: ['Three.js', 'Deck.gl', 'Mapbox GL JS', 'WebXR', 'ARCore'],
     description:
@@ -70,6 +76,8 @@ export const PROJECTS = [
     year: '2026',
     type: 'Solo project',
     platform: 'Web Browser · Meta Quest AR',
+    core: ['Spatial Computing', 'WebXR / AR', 'Data Visualization'],
+    category: 'Spatial Computing & Urban Visualization',
     // Add a walkthrough clip later — local file in public/projects/urban-digital-twin/
     // (e.g. demo: '/projects/urban-digital-twin/demo.mp4') or a Google Drive link.
     demo: '',
