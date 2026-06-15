@@ -1,6 +1,7 @@
 import { HANDS_OF_HERITAGE_CASE_STUDY } from './caseStudies/hands-of-heritage.js'
 import { URBAN_DIGITAL_TWIN_CASE_STUDY } from './caseStudies/urban-digital-twin.js'
 import { PIT_CREW_VR_CASE_STUDY } from './caseStudies/pit-crew-vr.js'
+import { INVISIBLE_SAFETY_CASE_STUDY } from './caseStudies/invisible-safety.js'
 
 export const PROJECTS = [
   
@@ -68,7 +69,7 @@ export const PROJECTS = [
       'Integrated 6 NYC OpenData sources with 2M+ geocoded records: sewer networks, 311 incidents, DOT permits, NYPD complaints, Vision Zero collisions, and MapPLUTO footprints.'
     ],
     accent: ['#b8743a', '#e8c697'],
-    
+    caseStudy: INVISIBLE_SAFETY_CASE_STUDY
   },
   {
     id: 'urban-digital-twin',
