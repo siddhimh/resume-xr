@@ -105,9 +105,7 @@ export default function ProjectDetail() {
             </>
           )}
 
-          <div className="project-detail-actions">
-            <Link to="/#projects" className="btn">← All projects</Link>
-          </div>
+         
         </div>
       </main>
     </>

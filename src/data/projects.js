@@ -1,5 +1,6 @@
 import { HANDS_OF_HERITAGE_CASE_STUDY } from './caseStudies/hands-of-heritage.js'
 import { URBAN_DIGITAL_TWIN_CASE_STUDY } from './caseStudies/urban-digital-twin.js'
+import { PIT_CREW_VR_CASE_STUDY } from './caseStudies/pit-crew-vr.js'
 
 export const PROJECTS = [
   
@@ -46,7 +47,7 @@ export const PROJECTS = [
       'Cinematic replay system with first-person VR views, fixed overview cameras, scripted director-camera movement, fade transitions, and Unity Recorder integration for highlight capture.'
     ],
     accent: ['#b8743a', '#e8c697'],
-   
+    caseStudy: PIT_CREW_VR_CASE_STUDY
   },
   {
     id: 'invisible-safety',
